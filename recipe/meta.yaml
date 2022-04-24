@@ -14,7 +14,8 @@ source:
 
 
 build:
-  number: 2
+  # Give our build numbers precedence
+  number: 102
   run_exports:
   # seems to be major version compatibility
   # https://abi-laboratory.pro/tracker/timeline/ffmpeg/
@@ -38,8 +39,6 @@ requirements:
     - gnutls  # [not win]
     - libiconv  # [osx]
     - libxml2  # [not win]
-    - x264  # [not win]
-    - x265  # [not win]
     - libvpx  # [not win]
     - zlib  # [not win]
     - openh264  # [not win]
@@ -56,7 +55,6 @@ requirements:
     - lame  # [not win]
     - libxml2  # [not win]
     - gmp  # [unix]
-    - x265  # [not win]
     - aom  # [not win]
     - svt-av1  # [unix]
 
@@ -67,8 +65,6 @@ test:
     - ffmpeg -loglevel panic -codecs | grep "libmp3lame"  # [not win]
     - ffmpeg -loglevel panic -codecs | grep "DEVI.S zlib"  # [unix]
     - ffmpeg -loglevel panic -codecs | grep "DEV.LS h264"  # [unix]
-    - ffmpeg -loglevel panic -codecs | grep "libx264"  # [unix]
-    - ffmpeg -loglevel panic -codecs | grep "libx265"  # [unix]
     - ffmpeg -loglevel panic -codecs | grep "libopenh264"  # [unix]
     - ffmpeg -loglevel panic -codecs | grep "vaapi"  # [linux and not (ppc64le or aarch64)]
     - ffmpeg -loglevel panic -codecs | grep "libaom"  # [unix]
@@ -78,7 +74,6 @@ test:
         "avcodec",
         "avdevice",
         "swresample",
-        "postproc",
         "avfilter",
         "avcodec",
         "avformat",

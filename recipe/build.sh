@@ -39,13 +39,11 @@ fi
         --enable-avresample \
         --enable-demuxer=dash \
         --enable-gnutls \
-        --enable-gpl \
+        --disable-gpl \
         --enable-hardcoded-tables \
         --enable-libfreetype \
         --enable-libopenh264 \
         ${extra_codecs} \
-        --enable-libx264 \
-        --enable-libx265 \
         --enable-libaom \
         --enable-libsvtav1 \
         --enable-libxml2 \
