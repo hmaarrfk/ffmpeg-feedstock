@@ -52,6 +52,10 @@ if [[ "${target_platform}" == "win-64" ]]; then
   # I cannot even run llvm-strip on the terminal
   extra_args="${extra_args} --disable-stripping"
 
+  # Disable Windows resource compilation due to incompatibility with mswindres wrapper
+  # The wrapper passes GCC-style arguments to Windows RC.exe which doesn't understand them
+  extra_args="${extra_args} --disable-win32res"
+
   # ffmpeg by default attempts to link to libm
   # but that doesn't exist for windows
   extra_args="${extra_args} --host-extralibs="
