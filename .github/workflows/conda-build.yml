@@ -22,7 +22,7 @@ jobs:
       max-parallel: 50
       matrix:
         include:
-          - CONFIG: win_64_build_number_increment0ffnvcodec_headersNonelicense_familygpl
+          - CONFIG: win_64_build_number_increment0cuda_version_for_ffnvcodecNoneffnvcodec_headersNonelicense_familygpl
             STORE_BUILD_ARTIFACTS: False
             UPLOAD_PACKAGES: True
             build_platform: win-64
@@ -34,7 +34,7 @@ jobs:
             resize_partitions: False
             runs_on: ['windows-2022']
             tools_install_dir: D:\Miniforge
-          - CONFIG: win_64_build_number_increment0ffnvcodec_headersNonelicense_familylgpl
+          - CONFIG: win_64_build_number_increment0cuda_version_for_ffnvcodecNoneffnvcodec_headersNonelicense_familylgpl
             STORE_BUILD_ARTIFACTS: False
             UPLOAD_PACKAGES: True
             build_platform: win-64
