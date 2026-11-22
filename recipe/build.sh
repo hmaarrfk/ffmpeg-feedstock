@@ -218,7 +218,21 @@ fi
 
 if [[ ${CI} != "" ]]; then cat ffbuild/config.mak; fi
 
-make -j${CPU_COUNT}
+if [[ "${target_platform}" == win-* ]]; then
+  echo "DEBUG pwd=$(pwd)"
+  echo "DEBUG SRC_DIR=${SRC_DIR}"
+  echo "DEBUG make=$(command -v make)"
+  make --version
+  grep -E "^(SRC_PATH|SRC_LINK|BIN2C|HOSTEXESUF)" ffbuild/config.mak || true
+  sed -i -e 's/^RUN_BIN2C = /RUN_BIN2C = $(info DEBUG BIN2C in=[$<] out=[$@])/' \
+         -e 's/^RUN_GZIP  = /RUN_GZIP  = $(info DEBUG GZIP in=[$<] out=[$@])/' \
+         -e 's/^RUN_MINIFY = /RUN_MINIFY = $(info DEBUG MINIFY in=[$<] out=[$@])/' \
+         ffbuild/common.mak
+  grep -n "^RUN_" ffbuild/common.mak
+  make -k -j${CPU_COUNT} || { echo "DEBUG make -k failed"; ls -la fftools/resources || true; exit 1; }
+else
+  make -j${CPU_COUNT}
+fi
 make install
 
 if [[ "${target_platform}" == win-* ]]; then
