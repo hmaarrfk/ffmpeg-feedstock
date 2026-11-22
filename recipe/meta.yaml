@@ -40,7 +40,7 @@ source:
 
 build:
   number: {{ build }}
-  skip: true  # [not win or ffnvcodec_headers != "None"]
+  skip: true  # [not win or ffnvcodec_headers != "None" or cuda_version_for_ffnvcodec != "None"]
   string: {{ license_family }}_h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
   run_exports:
   # seems to be major version compatibility
